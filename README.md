@@ -29,13 +29,20 @@ In June 2026, "loop engineering" went viral: *stop prompting agents, design loop
               └─────────────────────────────────────────────┘
 ```
 
+> **A note on naming, from the research.** The buzzword most likely to *stick* is
+> "harness engineering" / "meta-harness optimization" — that's the layer where
+> automation just beat expert humans on benchmarks ([`REPORT.md` §2](REPORT.md)).
+> "Verifier engineering" is not the front-running *label*; it's the durable
+> *lever* underneath every one of those systems. This repo is named for the lever
+> on purpose: labels churn, the skill of authoring trustworthy graders doesn't.
+
 Read it bottom-up: **self-evolution is downstream of verification.** A self-improving agent can only climb a gradient you can measure. Where verification is cheap and trustworthy (code, math, proofs) the whole stack works. Where it's fuzzy (taste, product judgment, "is this what the user meant") the stack stalls and humans snap back into the loop. **That's the real frontier-after-the-frontier.**
 
 ## What's in here
 
 | Path | What it is |
 | --- | --- |
-| [`REPORT.md`](REPORT.md) | Deep-research report: trend-name candidates, the benchmark evidence, tools/papers, and a late-2026→2027 forecast. *(populated by the deep-research run)* |
+| [`REPORT.md`](REPORT.md) | **Deep-research report** (25 sources, 23 adversarially-verified claims): trend-name candidates, the benchmark evidence, primary papers, and a late-2026→2027 forecast. |
 | [`docs/progression.md`](docs/progression.md) | The prompt → context → loop → harness → verifier arc, with who coined what and when. |
 | [`docs/glossary.md`](docs/glossary.md) | Verifier, gate, reward model, maker/checker, meta-harness, reward hacking, LLM-judge — defined. |
 | [`docs/sources.md`](docs/sources.md) | Primary sources: the viral threads, the repos, the benchmark papers. |

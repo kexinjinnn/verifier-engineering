@@ -41,21 +41,33 @@ Two structural reasons, not vibes:
 
 ## The evidence that harness/loop tuning is already being automated
 
-- **Meta-Harness (Lee et al., 2026):** ~76.4% on Terminal-Bench-2 via *automated*
-  harness optimization — surpassing every hand-engineered harness, **frozen model
-  weights.**
-- **Trivedy (2026):** a fixed GPT-5.2-Codex agent went **52.8% → 66.5%** on
-  Terminal-Bench 2.0 through harness changes alone (prompt restructuring,
-  context middleware, self-verification hooks).
-- **GEPA (ICLR 2026 oral):** reads execution traces, proposes targeted scaffold
-  improvements.
-- **EvoSkill / SICA / ReVeal:** synthesize reusable skills from *failed*
-  trajectories; agents that edit their own codebase; evolution through reliable
-  self-verification.
+*All figures below are the adversarially-verified versions from [`REPORT.md`](../REPORT.md);
+each traces to a primary arXiv source in [`sources.md`](sources.md).*
+
+- **Meta-Harness (Stanford IRIS Lab — arXiv:2603.28052):** an outer-loop agent
+  (Claude Code + Opus-4.6) searches over *harness code* around a **frozen** base
+  model. **76.4% on Terminal-Bench 2.0 (Opus 4.6)**, beating hand-engineered
+  Terminus-KIRA (74.7%); **#1 among Haiku 4.5 agents (37.6%)**; beats the SOTA
+  context system ACE by **7.7 pts with 4× fewer tokens**. *(Ranks #2 overall on
+  Opus 4.6 behind ForgeCode 81.8% — automated ≠ unbeatable.)*
+- **Agentic Harness Engineering / AHE (arXiv:2604.25850):** independent
+  corroboration — **Terminal-Bench 2 pass@1 69.7% → 77.0%** over 10 self-evolution
+  iterations on GPT-5.4, beating human-designed Codex-CLI (71.9%). Each edit is a
+  **"falsifiable contract"**; ablation shows *prompt-only* self-evolution actually
+  **regresses (−2.3 pp)** while structural harness edits pay (+3–6 pp).
+- **GEPA (ICLR 2026 Oral — arXiv:2507.19457):** reflective prompt evolution beats
+  RLVR (GRPO) by **6% avg / up to 20% with 35× fewer rollouts**, and the
+  prompt-optimizer MIPROv2 by **>10%**.
+- **SICA (arXiv:2504.15228):** an agent editing its own full Python codebase —
+  SWE-Bench Verified **17% → 53%** (50-task subset).
+- **EvoSkill (arXiv:2603.02766):** synthesizes reusable skills from *failed*
+  trajectories; model frozen, Pareto-selected on validation.
 
 The pattern across all of them: **the human stops tuning the scaffold and starts
-authoring the reward.** That reward is a verifier.
+authoring the reward.** That reward is a verifier — and §4 of [`REPORT.md`](../REPORT.md)
+shows how often it gets gamed, which is why the reward is the hard part.
 
-> Verify every figure in this file against [`sources.md`](sources.md) before
-> citing it externally — these are populated from a research pass and the
-> deep-research report (`REPORT.md`) carries the adversarially-checked versions.
+> ⚠️ Earlier drafts of this file cited a "Trivedy 52.8%→66.5%" figure from a
+> secondary blog; it did **not** survive verification and has been replaced by
+> the primary-source AHE result above. Confirm any figure against the arXiv PDFs
+> before external citation.
